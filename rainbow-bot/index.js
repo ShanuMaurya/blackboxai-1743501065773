@@ -1,11 +1,12 @@
 require('dotenv').config();
-const { Client, GatewayIntentBits, Partials } = require('discord.js');
+const { Client, GatewayIntentBits, Partials, Collection } = require('discord.js');
 const ytdl = require('ytdl-core');
 const { joinVoiceChannel, createAudioPlayer, createAudioResource, entersState, VoiceConnectionStatus } = require('@discordjs/voice');
 const fs = require('fs');
 const path = require('path');
 
-const client = new Client({
+const client = new Client({ 
+  commands: new Collection(),
   intents: [
     GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMessages,
@@ -72,7 +73,9 @@ for (const file of eventFiles) {
 }
 
 // Load command handler
-require('./utils/commandHandler')(client);
+const commandHandler = require('./utils/commandHandler');
+commandHandler(client);
+console.log(`✅ Loaded ${client.commands.size} commands`);
 
 
 // Login - Using token from environment variable
@@ -95,4 +98,6 @@ client.on('ready', () => {
   });
 });
 
-client.login(token);
+client.login(token)
+  .then(() => console.log('✅ Successfully logged in to Discord'))
+  .catch(err => console.error('❌ Login failed:', err));
