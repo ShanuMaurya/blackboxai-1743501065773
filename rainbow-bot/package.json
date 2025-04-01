@@ -1,0 +1,26 @@
+{
+  "name": "rainbow-bot",
+  "version": "1.0.0",
+  "description": "Discord music and moderation bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "@discordjs/rest": "^2.4.3",
+"@discordjs/voice": "^0.16.2",
+    "discord-api-types": "^0.37.119",
+    "discord.js": "^14.10.0",
+    "dotenv": "^16.0.3",
+    "ffmpeg-static": "^5.1.0",
+    "play-dl": "^1.9.6",
+    "quick.db": "^9.0.6",
+    "spotify-url-info": "^2.2.3",
+    "sqlite3": "^5.1.5",
+    "ytdl-core": "^4.11.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
